@@ -1,3 +1,8 @@
+<p align="center">
+  🌐 <strong>Documentation / Documentação / Documentación</strong><br>
+  <a href="README.en.md">🇺🇸 English</a> · <a href="README.md">🇧🇷 Português (Brasil)</a> · <a href="README.es.md">🇪🇸 Español</a>
+</p>
+
 <div align="center">
 
 # 🚀 CHATGPT WEB + WINDOWS AGENT
@@ -568,5 +573,19 @@ Se algo parecer errado:
 [⬆️ Voltar ao topo](#-chatgpt-web--windows-agent)
 
 **Feito para aprender, experimentar e desenvolver com autonomia e segurança.**
+
+</div>
+
+---
+
+<div align="center">
+
+## 🤝 Patrocínio / Sponsored by / Patrocinado por
+
+<a href="https://iamarketmaster.com"><img src="https://raw.githubusercontent.com/StockNewsBR/New-DeepSeek-Harness-2.0-GOD-Setup/main/assets/unnamed.png" alt="IA Market Master e StockNewsBR" width="100%"></a>
+
+### [🚀 IA Market Master](https://iamarketmaster.com) · [📈 StockNewsBR](https://stocknewsbr.com)
+
+**IA Market Master — Marketing OS** · **StockNewsBR — Inteligência de Mercado com IA**
 
 </div>
