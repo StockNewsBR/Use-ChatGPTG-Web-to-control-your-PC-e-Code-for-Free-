@@ -13,9 +13,9 @@
 ![Git](https://img.shields.io/badge/Git-GitHub-181717?style=for-the-badge)
 ![Guide](https://img.shields.io/badge/GUIA-PT--BR-brightgreen?style=for-the-badge)
 
-### 💥 CONSTRUA, ANALISE, TESTE E CORRIJA — COM LINGUAGEM NATURAL!
+### 💥 CODE FOR FREE: CONSTRUA, ANALISE, TESTE E CORRIJA CÓDIGO PELO CHATGPT + WINDOWS AGENT — COM LINGUAGEM NATURAL!
 
-**O ambiente local pode ser montado com ferramentas gratuitas e open source.** A disponibilidade dos modelos, conectores e chamadas no ChatGPT depende do plano, da conta e dos limites vigentes.
+**Code for Free com ChatGPT + Windows Agent:** você descreve no chat o programa, site, automação ou correção que deseja, e o Windows Agent conectado pode trabalhar diretamente nos arquivos do seu PC, executar comandos e testes autorizados, analisar erros e ajudar a produzir código — sem precisar copiar e colar cada comando. **O ambiente local pode ser montado com ferramentas gratuitas e open source.** A disponibilidade dos modelos, conectores e chamadas no ChatGPT depende do plano, da conta e dos limites vigentes; portanto, *code for free* não significa uso ilimitado da IA.
 
 [⚡ Instalação do zero](#-tutorial-completo-do-zero) · [🧬 Arquitetura](#-entenda-a-arquitetura) · [🔒 Segurança](#-segurança-não-é-opcional) · [🎯 Comandos prontos](#-15-missões-prontas-para-copiar) · [🧯 Solução de problemas](#-solução-de-problemas)
 
