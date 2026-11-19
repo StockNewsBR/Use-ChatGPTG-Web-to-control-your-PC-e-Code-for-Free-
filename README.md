@@ -5,7 +5,7 @@
 
 **CHEGA DE COPIAR COMANDOS, ADIVINHAR ERROS E TROCAR DE FERRAMENTA A CADA TAREFA.**
 
-**🖥️ WINDOWS + 🧠 CHATGPT + 🔌 MCP + 🛠️ POWERHELL/GIT/WSL = UM ASSISTENTE QUE CONSEGUE INSPECIONAR E TRABALHAR NO SEU COMPUTADOR.**
+**🖥️ WINDOWS + 🧠 CHATGPT + 🔌 MCP + 🛠️ POWERSHELL/GIT/WSL = UM ASSISTENTE QUE CONSEGUE INSPECIONAR E TRABALHAR NO SEU COMPUTADOR.**
 
 ![Windows](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D4?style=for-the-badge)
 ![ChatGPT](https://img.shields.io/badge/ChatGPT-Web-10A37F?style=for-the-badge)
@@ -54,7 +54,7 @@ O nome ou a disponibilidade de um modelo específico, como **“GPT-6.1”**, **
 
 ## 🧬 ENTENDA A ARQUITETURA
 
-\`\`\`mermaid
+```mermaid
 flowchart TD
     U["👤 Você no navegador"] --> C["🧠 ChatGPT Web"]
     C --> P["🔐 Conector / integração MCP autorizada"]
@@ -66,7 +66,7 @@ flowchart TD
     G --> W["✍️ Escrita autorizada em diretórios limitados"]
     G --> X["⛔ Bloqueio de ações críticas sem autorização"]
     style X fill:#5e1720,color:#fff
-\`\`\`
+```
 
 **Três peças diferentes, que não podem ser confundidas:**
 
@@ -120,66 +120,66 @@ Este tutorial tem duas trilhas: **A — preparar e validar gratuitamente o seu W
 
 Abra **PowerShell** e verifique o gerenciador de pacotes:
 
-\`\`\`powershell
+```powershell
 winget --version
-\`\`\`
+```
 
 Instale os utilitários oficiais:
 
-\`\`\`powershell
+```powershell
 winget install --id Microsoft.WindowsTerminal --exact
 winget install --id Microsoft.PowerShell --exact
-\`\`\`
+```
 
 Feche e reabra o terminal. Confira:
 
-\`\`\`powershell
+```powershell
 $PSVersionTable.PSVersion
 Get-ComputerInfo | Select-Object WindowsProductName, OsVersion
-\`\`\`
+```
 
-**Esperado:** PowerShell 7 ao abrir \`pwsh\`. Se o \`winget\` não estiver disponível, use a página oficial do [App Installer](https://learn.microsoft.com/windows/package-manager/winget/).
+**Esperado:** PowerShell 7 ao abrir `pwsh`. Se o `winget` não estiver disponível, use a página oficial do [App Installer](https://learn.microsoft.com/windows/package-manager/winget/).
 
 ## PASSO 2 — Instalar Git, VS Code, Python e Node.js
 
 Em um terminal PowerShell:
 
-\`\`\`powershell
+```powershell
 winget install --id Git.Git --exact
 winget install --id Microsoft.VisualStudioCode --exact
 winget install --id Python.Python.3.13 --exact
 winget install --id OpenJS.NodeJS.LTS --exact
-\`\`\`
+```
 
 Abra um **novo terminal** para atualizar o PATH e confirme:
 
-\`\`\`powershell
+```powershell
 git --version
 code --version
 python --version
 node --version
 npm --version
-\`\`\`
+```
 
-> As versões específicas podem mudar. Para Python, também é válido instalar a versão estável disponível na página oficial, alterando o identificador do pacote conforme \`winget search Python.Python\`. A falha de um pacote não significa que toda a instalação falhou.
+> As versões específicas podem mudar. Para Python, também é válido instalar a versão estável disponível na página oficial, alterando o identificador do pacote conforme `winget search Python.Python`. A falha de um pacote não significa que toda a instalação falhou.
 
 Configure Git com seus **próprios** dados (não copie dados de outra pessoa):
 
-\`\`\`powershell
+```powershell
 git config --global user.name "SEU NOME"
 git config --global user.email "seu-email@example.com"
-\`\`\`
+```
 
 ## PASSO 3 — Criar um workspace controlado
 
 Use uma pasta dedicada para testes, projetos e permissões limitadas:
 
-\`\`\`powershell
+```powershell
 $Workspace = Join-Path $HOME "AI-Workspace"
 New-Item -ItemType Directory -Force -Path $Workspace
 Set-Location $Workspace
 Get-Location
-\`\`\`
+```
 
 **Por quê?** Um agente autorizado a ler ou escrever apenas nesta pasta é mais fácil de auditar do que um agente com acesso indiscriminado ao disco C:.
 
@@ -187,25 +187,25 @@ Get-Location
 
 No terminal com permissões adequadas, consulte o estado:
 
-\`\`\`powershell
+```powershell
 wsl --status
 wsl --list --verbose
-\`\`\`
+```
 
 Se não estiver instalado:
 
-\`\`\`powershell
+```powershell
 wsl --install -d Ubuntu
-\`\`\`
+```
 
 **A instalação pode exigir administrador e reinicialização.** Não faça isso durante trabalhos importantes em andamento. Após instalar, abra o Ubuntu e conclua a criação de usuário Linux.
 
 Verifique:
 
-\`\`\`powershell
+```powershell
 wsl --list --verbose
 wsl -d Ubuntu -- uname -a
-\`\`\`
+```
 
 Documentação: [Microsoft Learn — instalar WSL](https://learn.microsoft.com/windows/wsl/install).
 
@@ -213,12 +213,12 @@ Documentação: [Microsoft Learn — instalar WSL](https://learn.microsoft.com/w
 
 Dentro do workspace:
 
-\`\`\`powershell
+```powershell
 git clone https://github.com/StockNewsBR/Use-ChatGPTG-Web-to-control-your-PC-e-Code-for-Free-.git
 Set-Location Use-ChatGPTG-Web-to-control-your-PC-e-Code-for-Free-
 git status
 git remote -v
-\`\`\`
+```
 
 Esse clone baixa **a documentação deste projeto**. **Não instala sozinho** o agente do Windows, um conector ChatGPT ou um túnel remoto.
 
@@ -254,7 +254,7 @@ Deixe **desligado** inicialmente: exclusão, formatação, firewall, serviços, 
 
 **Modelo de política recomendado (exemplo conceitual, não YAML pronto de um produto):**
 
-\`\`\`yaml
+```yaml
 policy_example_only:
   allowed_roots:
     - "C:\\Users\\SEU_USUARIO\\AI-Workspace"
@@ -266,7 +266,7 @@ policy_example_only:
   windows_ui_control: false
   audit_log: true
   require_approval_for_critical_actions: true
-\`\`\`
+```
 
 Não cole esse exemplo como configuração real sem consultar o formato exigido pelo servidor MCP escolhido.
 
@@ -276,7 +276,7 @@ O ChatGPT Web não executa automaticamente processos do seu Windows. A integraç
 
 A topologia recomendada é:
 
-\`\`\`text
+```text
 ChatGPT Web
     ↓
 Conector/integração MCP habilitada na sua conta
@@ -288,13 +288,13 @@ Cliente do túnel no PC Windows
 Servidor MCP local
     ↓
 Ferramentas permitidas pela política
-\`\`\`
+```
 
 Requisitos **obrigatórios**:
 
 1. Autenticação de cada cliente e validação do destino.
 2. Canal criptografado, protegido por mecanismo apropriado.
-3. Serviço local acessível apenas por \`127.0.0.1\` quando aplicável.
+3. Serviço local acessível apenas por `127.0.0.1` quando aplicável.
 4. Nenhuma porta MCP aberta diretamente no roteador.
 5. Segredos protegidos no armazenamento do sistema; nunca em README, histórico ou logs.
 6. Reinício automático sem duplicar processos, somente após validação manual.
@@ -323,13 +323,13 @@ Peça ao ChatGPT:
 
 Exemplo de resposta de uma instalação real de referência:
 
-\`\`\`text
+```text
 Servidor: windows-pc-agent-ultimate
 Versão: 0.2.0-canary
 Catálogo: 39 ferramentas identificadas
 Modo: operador não administrativo
 Política: operações críticas sob confirmação
-\`\`\`
+```
 
 Esses dados pertencem **ao caso de referência** e **não são resultados garantidos** no seu computador.
 
@@ -345,13 +345,13 @@ Depois de validar leitura e auditoria, considere habilitar gradualmente:
 
 1. **Git read-only:** status, branches e diffs.
 2. **Testes:** comandos predefinidos em projetos autorizados.
-3. **Escrita limitada:** somente no \`AI-Workspace\`, com diff e backup.
+3. **Escrita limitada:** somente no `AI-Workspace`, com diff e backup.
 4. **Git commit:** somente após revisão explícita.
 5. **Push/PR:** aprovação adicional e branch correta.
 
 **Fluxo ideal:**
 
-\`\`\`mermaid
+```mermaid
 flowchart LR
  A["Investigar"] --> B["Explicar causa"]
  B --> C["Propor diff"]
@@ -363,7 +363,7 @@ flowchart LR
  H --> I{"Aprova envio?"}
  I -->|Sim| J["Commit/Push/PR"]
  I -->|Não| K["Manter local"]
-\`\`\`
+```
 
 ## PASSO 12 — Automatizar a inicialização, se necessário
 
@@ -476,7 +476,7 @@ Não crie tarefas que executem um script remoto sem revisão. O inicializador re
 
 **Nunca publique:** chaves de API, tokens, arquivos DPAPI, senhas, dumps de ambiente, cookies, dados pessoais ou logs com credenciais.
 
-**Nunca execute** comandos como \`irm <url> | iex\` ou equivalentes sem auditar a origem e o conteúdo do script. Nunca exponha endpoints MCP sem autenticação, nem desative firewall/antivírus para “fazer funcionar”.
+**Nunca execute** comandos como `irm <url> | iex` ou equivalentes sem auditar a origem e o conteúdo do script. Nunca exponha endpoints MCP sem autenticação, nem desative firewall/antivírus para “fazer funcionar”.
 
 ### 🧯 Botão de emergência
 
@@ -500,8 +500,8 @@ Se algo parecer errado:
 | Funciona localmente, não no ChatGPT | Ponte remota ausente ou mal configurada | Canal autenticado, destino e permissões |
 | Ferramenta aparece mas falha | Permissões insuficientes ou comando não suportado | Política do servidor e resposta de erro |
 | Duplicação de agentes no logon | Watchdog e fallback sem trava | Mutex/lock e tarefas agendadas |
-| Git não encontra comando | PATH ainda não atualizado | Reabrir terminal e \`git --version\` |
-| WSL não inicia | Requisitos de virtualização ou reinicialização pendente | \`wsl --status\` e documentação Microsoft |
+| Git não encontra comando | PATH ainda não atualizado | Reabrir terminal e `git --version` |
+| WSL não inicia | Requisitos de virtualização ou reinicialização pendente | `wsl --status` e documentação Microsoft |
 | IA “diz” que executou sem ferramenta | Resposta textual não é evidência de execução | Exigir saída de chamada MCP e resultado verificável |
 | Limites do ChatGPT | Cota, plano ou política do produto | Verificar limites e disponibilidade atuais |
 
